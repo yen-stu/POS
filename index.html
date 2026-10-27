@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  手搖飲料 POS 點餐系統：HTML 結構檔
+  ============================================================
+  HTML 的工作：只負責「放好位置」，也就是決定畫面上有哪些區塊。
+  畫面長什麼樣子 → 由 style.css 負責
+  資料與操作邏輯 → 由 JavaScript 負責
+
+  本頁面中，JavaScript 會用 id 找到下面這些元素：
+    #menu-list    JS 會把菜單產生在這裡
+    #order-list   JS 會把訂單產生在這裡
+    #total-price  JS 會把總金額寫在這裡
+    #clear-btn    JS 會幫這個按鈕綁定「清空訂單」功能
+  這些 id 如果被改名或刪除，JavaScript 就找不到元素，程式會無法運作。
+-->
+<!-- lang="zh-Hant" 表示這個網頁的語言是繁體中文，瀏覽器和輔助工具會根據它處理文字 -->
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <title>🥤 手搖飲料 POS 點餐系統</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<!-- body 內的所有內容，就是使用者在畫面上看到的東西 -->
+<body>
+    <h2>🥤 手搖飲料 POS 系統</h2>
+    <!-- container：最外層容器，通常由 CSS 設定成「左右並排」的版面 -->
+    <div class="container">
+        <!-- ================= 左側：菜單區 ================= -->
+        <div class="box">
+            <h3>今日菜單</h3>
+
+            <!-- 這個 div 一開始是空的。
+           JavaScript 的 renderMenu() 會把每一種飲料的名稱、價格和「點餐」按鈕產生在這裡面。 -->
+            <div id="menu-list"></div>
+        </div>
+
+        <!-- ================= 右側：結帳區 ================= -->
+        <div class="box">
+            <h3>結帳清單</h3>
+
+            <!-- 這個 div 一開始也是空的。
+           JavaScript 的 renderOrder() 會把客人點的飲料、數量與 + - 刪除 按鈕產生在這裡面。 -->
+            <div id="order-list"></div>
+
+            <!-- 總金額區塊 -->
+            <!-- style="text-align: right;" 是直接寫在標籤上的 CSS，讓文字靠右對齊。 -->
+            <h3 style="text-align: right;">
+                <!-- 預設顯示 0。JavaScript 的 calculateTotal() 會用 textContent 更新這個 span 的數字。 -->
+                總計：<span id="total-price">0</span> 元
+            </h3>
+
+            <!-- 清空訂單按鈕：JavaScript 會對它綁定點擊事件，執行 clearOrder() -->
+            <button id="clear-btn" class="clear-btn">清空訂單</button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
